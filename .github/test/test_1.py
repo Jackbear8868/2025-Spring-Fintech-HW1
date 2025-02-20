@@ -10,6 +10,6 @@ def test_student_output():
 
     # 檢查是否有 100 次
     if message.count("") == 100 + 1:
-        print("✅ You got 20 points.")
+        print("Pass!")
     else:
-        print("❌ Your answer is wrong.")
+        print("Fail!")
