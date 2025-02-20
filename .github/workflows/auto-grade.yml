@@ -55,8 +55,4 @@ jobs:
           QUESTION_3_RESULTS: "${{ steps.Q3.outcome }}"
           QUESTION_4_RESULTS: "${{ steps.Q4.outcome }}"
         with:
-          runners: |
-            Q1
-            Q2
-            Q3
-            Q4
+          runners: [Q1, Q2, Q3, Q4]
