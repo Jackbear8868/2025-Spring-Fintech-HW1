@@ -12,6 +12,6 @@ def test_student_output():
 
     message = result.stdout.replace("\n", "")
 
-    assert decrypted_ans == message, f"Wrong Answer"
+    assert decrypted_ans == message, f"❌ Wrong Answer"
 
     print("✅ You got 20 points.")

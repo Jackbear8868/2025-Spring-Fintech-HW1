@@ -16,6 +16,6 @@ def test_student_output():
 
     for i in range(len(decrypted_ans)):
         if message[i] != str(ans[i]):
-            assert False, f"Wrong Answer"
+            assert False, f"❌ Wrong Answer"
 
     print("✅ You got 20 points.")

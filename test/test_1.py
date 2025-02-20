@@ -9,6 +9,6 @@ def test_student_output():
     if message.count("") == 100 + 1:
         print("✅ You got 20 points.")
     else:
-        assert message.count("") == 100 + 1, "Wrong Answer."
+        assert message.count("") == 100 + 1, "❌ Wrong Answer."
 
 
