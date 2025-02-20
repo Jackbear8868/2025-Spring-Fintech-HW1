@@ -1,15 +1,17 @@
 import pytest
 import subprocess
+from cryptography.fernet import Fernet
 
 def test_student_output():
-    # 執行學生的 1.py，擷取標準輸出
-    result = subprocess.run(["python", "1.py"], capture_output=True, text=True)
+    key = 'ErGgr5hOLD0q3IoFvkt7j0b2YFakr6ihREZLRNhIO5M='
+    ans = b'gAAAAABnt1sBM2Zr6q8PoDR-z5tpkX4NKDSMep05ByHf2u73Me9ogy3vDFwrAAf_mCzbXsZZzuD5nFV40JoooOGImv86KP1tB_5LTsqhblm-D5VlOHy7eyZcnHxuvF-JxMBdBC59swSLRbJBhrdnzQxNEtxAmdGpK030HaimdkWGeB9VfuYu_UvpjkEF9yrM6z97HFZvn1G8h4Je_CpBC7VFT_QXOW5TYZQCDlwXWE4mhJvJFYVWtBlViBKs-MUMsHmeQF02G4Rq9CT5k9Bya1WZlUm3TDbJFrAwhzc3sGHuPyPNQ6s01iJKLyr2wrMpEHyzeccMV_TdRSV6UIH3vsPleIwSaAMWDrl55VuM5owE99uy0xKmRoahZH-CvBSybkKwdm777t0ZQa5TpmnGXOx3OFTbEEs7wLbBUXfZBGfRT-wMoSw4hpKUfT3pfUnEgrlkDHiDRVhubGvxRBjV0QK3qkVNrvEh3_JF1ZFJa1NFGCJXFJHFXQI='
+    cipher = Fernet(key)
+    decrypted_ans = cipher.decrypt(ans).decode()
 
-    # 獲取學生的 print 輸出
-    message = result.stdout.replace("\n", "").split("UsingLLMtolearncodingissoeasy!!!")
+    result = subprocess.run(["python", "3.py"], capture_output=True, text=True)
 
-    # 檢查是否有 100 次
-    if message.count("") == 100 + 1:
-        print("Pass!")
-    else:
-        print("Fail!")
+    message = result.stdout.replace("\n", "")
+
+    assert decrypted_ans == message, f"Wrong Answer"
+
+    print("✅ You got 20 points.")
